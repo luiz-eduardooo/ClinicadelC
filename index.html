@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Exercícios Leves</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals with Teal Accent -->
+    <!-- Application Structure Plan: A estrutura é uma página única com um layout baseado em cartões. Cada cartão representa uma categoria principal de exercício (Aeróbicos, Fortalecimento, Alongamentos). Essa abordagem foi escolhida por ser visualmente organizada, intuitiva e altamente responsiva, funcionando bem tanto em desktops quanto em celulares. O fluxo do usuário é simples: ele vê as categorias, explora os exercícios e clica em um item para obter informações detalhadas em um painel de destaque no topo. Isso transforma um folheto estático em um guia interativo, incentivando o engajamento sem sobrecarregar o usuário. -->
+    <!-- Visualization & Content Choices: O conteúdo do relatório (listas de exercícios) é apresentado em cartões HTML estilizados com Tailwind CSS. A principal interação é o clique em cada item de exercício, que aciona uma função JavaScript para exibir dinamicamente uma dica contextual em um painel de informações. Esta escolha transforma a apresentação de dados de "informar" para "organizar e interagir", aumentando o valor para o usuário. Ícones Unicode são usados para apelo visual sem a necessidade de carregar imagens. Nenhuma biblioteca de gráficos foi necessária. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .exercise-item.active {
+            background-color: #14B8A6;
+            color: white;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-teal-700">Guia de Exercícios Leves</h1>
+            <p class="mt-2 text-lg text-slate-600">Uma rotina simples para começar a se mover.</p>
+        </header>
+
+        <main>
+            <section id="info-panel" class="bg-white p-6 rounded-xl shadow-md mb-8 min-h-[120px] flex items-center justify-center transition-all duration-300">
+                <p class="text-slate-500 text-center text-lg">Clique em um exercício abaixo para ver uma dica!</p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div id="aerobicos" class="bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-600 flex items-center">
+                        <span class="mr-3 text-3xl">🏃</span>
+                        Aeróbicos Leves
+                    </h2>
+                    <ul class="space-y-3">
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="aerobicos" data-key="caminhada">Caminhada leve</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="aerobicos" data-key="marcha">Marcha estacionária</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="aerobicos" data-key="polichinelo">Polichinelo adaptado</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="aerobicos" data-key="degrau">Subir e descer degrau</li>
+                    </ul>
+                </div>
+
+                <div id="fortalecimento" class="bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-600 flex items-center">
+                        <span class="mr-3 text-3xl">💪</span>
+                        Fortalecimento
+                    </h2>
+                    <ul class="space-y-3">
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="fortalecimento" data-key="flexao">Flexão de braço na parede</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="fortalecimento" data-key="extensao">Extensão de joelhos sentado</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="fortalecimento" data-key="calcanhar">Elevação de calcanhar sentado</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="fortalecimento" data-key="pesos">Levantamento de pesos leves</li>
+                    </ul>
+                </div>
+
+                <div id="alongamentos" class="bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-600 flex items-center">
+                        <span class="mr-3 text-3xl">🧘</span>
+                        Alongamentos
+                    </h2>
+                    <ul class="space-y-3">
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="alongamentos" data-key="inclinacao">Inclinação lateral do tronco</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="alongamentos" data-key="rotacao">Rotação de ombro</li>
+                        <li class="exercise-item p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-teal-50 hover:shadow-sm" data-category="alongamentos" data-key="abrir">Abrir e fechar os braços</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 text-slate-500">
+            <p>Lembre-se de consultar um profissional de saúde antes de iniciar qualquer atividade física.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const exerciseData = {
+                aerobicos: {
+                    caminhada: { title: "Caminhada Leve", tip: "Mantenha um ritmo constante e confortável. Ótimo para a saúde do coração e pode ser feito em qualquer lugar.", videoUrl: "https://www.youtube.com/watch?v=m-nLZvgBIPU" },
+                    marcha: { title: "Marcha Estacionária", tip: "Sentado ou em pé, levante os joelhos alternadamente como se estivesse marchando. Mantenha as costas retas.", videoUrl: "https://www.youtube.com/watch?v=_eFlTSa8wr0" },
+                    polichinelo: { title: "Polichinelo Adaptado", tip: "Em vez de pular, dê um passo para o lado enquanto levanta os braços. Alterne os lados. Ideal para baixo impacto.", videoUrl: "https://www.youtube.com/watch?v=vl5pDu5Q1c0" },
+                    degrau: { title: "Subir e Descer Degrau", tip: "Use um degrau baixo ou o primeiro degrau de uma escada. Suba com um pé, depois o outro, e desça. Alterne o pé inicial.", videoUrl: "https://www.youtube.com/watch?v=wSRpsaVkAxs" }
+                },
+                fortalecimento: {
+                    flexao: { title: "Flexão na Parede", tip: "Fique de frente para uma parede, com os braços estendidos. Incline-se para a frente, dobrando os cotovelos, e depois empurre de volta.", videoUrl: "https://www.youtube.com/watch?v=zJ-xAMDGAI8" },
+                    extensao: { title: "Extensão de Joelhos", tip: "Sentado em uma cadeira, estenda uma perna até ficar reta e segure por alguns segundos. Alterne as pernas.", videoUrl: "https://www.youtube.com/watch?v=VuJZ6dqMf8M" },
+                    calcanhar: { title: "Elevação de Calcanhar", tip: "Sentado ou em pé, levante os calcanhares o mais alto que puder e depois abaixe lentamente. Fortalece as panturrilhas.", videoUrl: "https://www.youtube.com/watch?v=3ZRe_QpvRPg" },
+                    pesos: { title: "Levantamento de Pesos Leves", tip: "Use latas de sopa ou garrafas de água. Faça movimentos como rosca bíceps (dobrar o cotovelo) ou elevação lateral.", videoUrl: "https://www.youtube.com/watch?v=ZU3oBHKwFrw" }
+                },
+                alongamentos: {
+                    inclinacao: { title: "Inclinação Lateral", tip: "Em pé ou sentado, levante um braço e incline suavemente o corpo para o lado oposto. Sinta o alongamento na lateral.", videoUrl: "https://www.youtube.com/watch?v=4N2KtzlheWI" },
+                    rotacao: { title: "Rotação de Ombro", tip: "Gire os ombros para a frente em movimentos circulares e depois para trás. Ajuda a aliviar a tensão no pescoço e ombros.", videoUrl: "https://www.youtube.com/watch?v=h7lXXQiXc-Q" },
+                    abrir: { title: "Abrir e Fechar Braços", tip: "Estenda os braços para a frente e cruze-os, depois abra-os bem, esticando o peito. Mantenha o movimento suave.", videoUrl: "https://www.youtube.com/watch?v=f682GCfQSJs" }
+                }
+            };
+
+            const exerciseItems = document.querySelectorAll('.exercise-item');
+            const infoPanel = document.getElementById('info-panel');
+            const initialPanelContent = infoPanel.innerHTML;
+
+            exerciseItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const currentActive = document.querySelector('.exercise-item.active');
+                    if (currentActive && currentActive !== item) {
+                        currentActive.classList.remove('active');
+                    }
+                    
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        infoPanel.innerHTML = initialPanelContent;
+                    } else {
+                        item.classList.add('active');
+                        const category = item.dataset.category;
+                        const key = item.dataset.key;
+                        const data = exerciseData[category][key];
+                        
+                        infoPanel.innerHTML = `
+                            <div class="text-center">
+                                <h3 class="font-bold text-xl text-teal-600 mb-2">${data.title}</h3>
+                                <p class="text-slate-600">${data.tip}</p>
+                                <a href="${data.videoUrl}" target="_blank" class="mt-4 inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-teal-700 transition-colors duration-200">
+                                    Ver Vídeo
+                                </a>
+                            </div>
+                        `;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
